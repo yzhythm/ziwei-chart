@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>紫微斗数 · 命盘工作台</title>
+<link rel="stylesheet" href="css/workbench.css?v=01443bec">
+<link rel="stylesheet" href="css/sim.css?v=72586b70">
+</head>
+<body>
+
+<div class="shell">
+  <!-- ============ 左侧导航 ============ -->
+  <aside class="side">
+    <div class="brand">
+      <span class="brand-mark">✦</span><span>紫微斗数</span>
+      <span class="brand-toggle">‹</span>
+    </div>
+
+    <div class="login-card" id="loginCard">
+      <div class="lc-avatar">命</div>
+      <div class="lc-txt"><b>登录 / 注册</b><span>登录后使用完整功能</span></div>
+      <div class="lc-arrow">→</div>
+    </div>
+
+    <nav class="menu" id="menu">
+      <a class="mi" data-view="paipan"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg><span>排盘入口</span></a>
+      <a class="mi" data-view="result"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg><span>排盘结果</span></a>
+      <a class="mi" data-view="read"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v16H6.5A2.5 2.5 0 004 21.5z"/><path d="M4 18.5A2.5 2.5 0 016.5 16H20"/></svg><span>紫微解读</span></a>
+      <a class="mi" data-view="qa"><svg viewBox="0 0 24 24"><path d="M20 15a3 3 0 01-3 3H9l-5 3V6a3 3 0 013-3h10a3 3 0 013 3z"/></svg><span>命盘问答</span></a>
+      <a class="mi" data-view="yun"><svg viewBox="0 0 24 24"><path d="M3 17l5-5 4 3 8-9"/><path d="M16 6h4v4"/></svg><span>运限分析</span><i class="pro">PRO</i></a>
+      <a class="mi" data-view="dual"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 5.5a3 3 0 010 5.8M18 14c2.2.9 3.8 3 3.8 6"/></svg><span>双人排盘</span><i class="pro">PRO</i></a>
+      <a class="mi" data-view="similar"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.6"/><circle cx="12" cy="4" r="1.8"/><circle cx="12" cy="20" r="1.8"/><circle cx="4" cy="8" r="1.8"/><circle cx="20" cy="8" r="1.8"/><circle cx="6.5" cy="16.5" r="1.8"/><circle cx="17.5" cy="16.5" r="1.8"/><path d="M12 9.6V5.8M12 14.4v3.8M9.6 10.6L5.6 8.6M14.4 10.6l4-2M10 13.4l-3 2.6M14 13.4l3 2.6"/></svg><span>同类型命盘</span><i class="pro">PRO</i></a>
+      <a class="mi" data-view="archive"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 12h7M9 16h7"/></svg><span>档案记录</span></a>
+      <a class="mi" data-view="plan"><svg viewBox="0 0 24 24"><path d="M3 9l4-5h10l4 5-9 12z"/><path d="M3 9h18M8 9l4 12 4-12"/></svg><span>会员套餐</span></a>
+      <a class="mi" data-view="account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg><span>会员中心</span></a>
+    </nav>
+
+    <div class="side-foot"><button id="collapse" title="收起侧栏">⇤</button><span>本地离线版</span></div>
+  </aside>
+
+  <!-- ============ 主区 ============ -->
+  <main class="main">
+    <header class="topbar">
+      <div class="crumb"><span class="cb-back">‹</span><span>命盘工作台</span><span class="cb-sep">›</span><b id="crumbNow">星盘总览</b></div>
+      <div class="top-right">
+        <div class="lang-wrap">
+          <button class="lang" id="langBtn"><span class="lang-a">文</span> 简体中文 <span class="caret">⌄</span></button>
+          <div class="lang-menu" id="langMenu"></div>
+        </div>
+        <button class="gear" id="gearBtn" title="设置">⚙</button>
+      </div>
+    </header>
+
+    <div class="content" id="content">
+
+      <!-- ---------- 星盘总览 ---------- -->
+      <section class="view on" data-view="overview">
+        <div class="eyebrow">命盘工作台</div>
+        <div class="hero-title"><h1>星盘总览</h1><span id="greet">你好，命主</span></div>
+        <p class="hero-desc">从命盘档案继续查看，或建立一份新的命盘。</p>
+
+        <div class="daily-wrap">
+          <div class="daily-bar">
+            <span class="db-star">✦</span>
+            <span id="dailyText">今日星语 · 正在推算…</span>
+            <span class="db-arrow">→</span>
+          </div>
+          <button class="btn-white" data-go="paipan">◉ 开始排盘</button>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="sec-head"><h2>最近命盘</h2><span>按最近更新时间排列</span></div>
+        <div id="recentList" class="recent"></div>
+      </section>
+
+      <!-- ---------- 排盘入口 ---------- -->
+      <section class="view" data-view="paipan">
+        <div class="eyebrow">命盘工作台 / 排盘入口</div>
+        <div class="hero-title"><h1>建立新命盘</h1><span>输入生辰，即时排算</span></div>
+        <p class="hero-desc">排盘完全在你的浏览器内完成，不上传任何数据。支持阳历与农历，覆盖 1900–2099 年。</p>
+
+        <div class="form-card">
+          <div class="fc-row"><label>称呼</label><input id="fName" value="命主" placeholder="如何称呼"></div>
+          <div class="fc-row"><label>历法</label>
+            <div class="seg"><button class="on" data-cal="solar">阳历</button><button data-cal="lunar">农历</button></div>
+          </div>
+          <div class="fc-row"><label>出生日期</label>
+            <div class="date3"><input id="fY" type="number" value="1994" min="1900" max="2099"><span>年</span>
+              <input id="fM" type="number" value="1" min="1" max="12"><span>月</span>
+              <input id="fD" type="number" value="17" min="1" max="31"><span>日</span></div>
+          </div>
+          <div class="fc-row"><label>出生时刻</label><input id="fTime" type="time" value="10:30" step="60"><span class="fc-hint" id="hourHint"></span></div>
+          <div class="fc-row"><label>性别</label><select id="fGender"><option value="女">女命</option><option value="男">男命</option></select></div>
+          <div class="fc-row" id="leapRow" style="display:none"><label>闰月</label><select id="fLeap"><option value="0">否（平月）</option><option value="1">是（闰月）</option></select></div>
+          <div id="formErr" class="form-err"></div>
+          <div class="fc-actions">
+            <button class="btn-white" id="btnGo">◉ 开始排盘</button>
+            <button class="btn-ghost" data-demo="nv">示例 · 癸酉女命</button>
+            <button class="btn-ghost" data-demo="nan">示例 · 癸酉男命</button>
+            <button class="btn-ghost" data-demo="today">填入今日</button>
+          </div>
+        </div>
+        <div class="tip-card"><b>关于子时</b>　23:00–00:59 归子时，是否换日各派不同，本系统按当日论。闰月按当月排（部分流派按下月），可在历法里自行调整。</div>
+      </section>
+
+      <!-- ---------- 排盘结果 ---------- -->
+      <section class="view" data-view="result">
+        <div class="eyebrow">命盘工作台 / 排盘结果</div>
+        <div class="hero-title"><h1>命盘结果</h1><span id="resTag">尚未排盘</span></div>
+        <p class="hero-desc">十二宫星曜、四化、自化与大限一览。完整逐宫解读见「紫微解读」。</p>
+        <div id="resultBody"><div class="empty"><div class="empty-ico">◎</div><h3>还没有命盘</h3><p>完成首次排盘后，可以从这里继续查看。</p><button class="btn-white" data-go="paipan">开始排盘</button></div></div>
+      </section>
+
+      <!-- ---------- 紫微解读 ---------- -->
+      <section class="view" data-view="read">
+        <div class="eyebrow">命盘工作台 / 紫微解读</div>
+        <div class="hero-title"><h1>深度解读</h1><span>十一卷 · 逐宫精读</span></div>
+        <p class="hero-desc">下方是一张完整的宣纸报告：命盘全图、核心结构、十二宫精读、四化飞化、自化链、六大专题、八大限逐年、流月应期与方法论。</p>
+        <div class="paper-toolbar"><span id="readTag">尚未排盘</span><div><button class="btn-ghost" id="btnExport">导出报告</button><button class="btn-ghost" id="btnPrint">打印</button><button class="btn-ghost" id="btnFullscreen">全屏阅读</button></div></div>
+        <div class="paper-frame"><iframe id="reportFrame" title="紫微斗数深度命理分析报告"></iframe></div>
+      </section>
+
+      <!-- ---------- 命盘问答 ---------- -->
+      <section class="view" data-view="qa">
+        <div class="eyebrow">命盘工作台 / 命盘问答</div>
+        <div class="hero-title"><h1>命盘问答</h1><span>基于当前盘面即时作答</span></div>
+        <p class="hero-desc">每个答案都由当前命盘的主星、三方四正、四化与限运实算生成，不是通用话术。</p>
+        <div class="qa-layout">
+          <div class="qa-list" id="qaList"></div>
+          <div class="qa-answer" id="qaAnswer"><div class="empty"><div class="empty-ico">✦</div><h3>选一个问题</h3><p>左侧是常见问题，也可以直接在下方输入关键词。</p></div></div>
+        </div>
+        <div class="qa-input"><input id="qaFree" placeholder="输入关键词，如：事业、婚姻、今年、忌、空宫、换限…"><button class="btn-white" id="qaAsk">提问</button></div>
+      </section>
+
+      <!-- ---------- 运限分析 ---------- -->
+      <section class="view" data-view="yun">
+        <div class="eyebrow">命盘工作台 / 运限分析 <i class="pro">PRO</i></div>
+        <div class="hero-title"><h1>人生 K 线</h1><span>初始值 1.000 · 84 根</span></div>
+        <p class="hero-desc">由大限、流年四化与叠宫实算的运势指数。红涨绿跌，影线越长代表该年变数越大。</p>
+        <div id="yunBody"><div class="empty"><div class="empty-ico">↗</div><h3>还没有运限数据</h3><p>完成首次排盘后，这里会生成完整的人生 K 线。</p><button class="btn-white" data-go="paipan">开始排盘</button></div></div>
+      </section>
+
+      <!-- ---------- 双人排盘 ---------- -->
+      <section class="view" data-view="dual">
+        <div class="eyebrow">命盘工作台 / 双人排盘 <i class="pro">PRO</i></div>
+        <div class="hero-title"><h1>双人合盘</h1><span>两人命宫与夫妻宫对照</span></div>
+        <p class="hero-desc">分别输入两人的生辰，比较命宫主轴、夫妻宫星性与三方四正，给出相处结构上的提示。</p>
+        <div class="dual-grid">
+          <div class="dual-card"><h3>甲方</h3><div class="fc-row"><label>称呼</label><input id="aName" value="甲"></div>
+            <div class="fc-row"><label>阳历生日</label><input id="aDate" type="date" value="1994-01-17"></div>
+            <div class="fc-row"><label>时刻</label><input id="aTime" type="time" value="10:30"></div>
+            <div class="fc-row"><label>性别</label><select id="aGender"><option value="女">女命</option><option value="男">男命</option></select></div></div>
+          <div class="dual-card"><h3>乙方</h3><div class="fc-row"><label>称呼</label><input id="bName" value="乙"></div>
+            <div class="fc-row"><label>阳历生日</label><input id="bDate" type="date" value="1994-01-22"></div>
+            <div class="fc-row"><label>时刻</label><input id="bTime" type="time" value="12:10"></div>
+            <div class="fc-row"><label>性别</label><select id="bGender"><option value="男">男命</option><option value="女">女命</option></select></div></div>
+        </div>
+        <div class="fc-actions"><button class="btn-white" id="btnDual">◉ 开始合盘</button><span class="fc-hint">默认已填入两张可核对的示例盘</span></div>
+        <div id="dualBody"></div>
+      </section>
+
+      <!-- ---------- 同类型命盘 ---------- -->
+      <section class="view" data-view="similar">
+        <div class="eyebrow">命盘工作台 / 同类型命盘 <i class="pro">PRO</i></div>
+        <div class="hero-title"><h1>同类型命盘检索</h1><span>结构指纹 · 同年同构 · 跨年同构 · 名人对照</span></div>
+        <p class="hero-desc">把你的命盘压成结构指纹，在全量命盘中检索同构者：同年同构者与你的先天格局完全同步，跨年同构者隔着不同的年份却有相同的命运剧本类型，另附名人命盘对照。</p>
+        <div id="simBody"><div class="empty"><div class="empty-ico">✦</div><h3>还没有结构指纹</h3><p>完成首次排盘后，这里会检索与你同类型的命盘。</p><button class="btn-white" data-go="paipan">开始排盘</button></div></div>
+      </section>
+
+      <!-- ---------- 档案记录 ---------- -->
+      <section class="view" data-view="archive">
+        <div class="eyebrow">命盘工作台 / 档案记录</div>
+        <div class="hero-title"><h1>档案记录</h1><span>存于本机浏览器</span></div>
+        <p class="hero-desc">所有命盘只保存在这台设备的浏览器里，不上传服务器。清空浏览器数据会一并清除。</p>
+        <div id="archiveBody"></div>
+      </section>
+
+      <!-- ---------- 会员套餐 / 会员中心 ---------- -->
+      <section class="view" data-view="plan">
+        <div class="eyebrow">命盘工作台 / 会员套餐</div>
+        <div class="hero-title"><h1>功能与套餐</h1><span>本地离线版</span></div>
+        <p class="hero-desc">这是一个纯前端应用，不需要账号、不需要付费、不联网也能用。</p>
+        <div class="plan-grid" id="planGrid"></div>
+      </section>
+      <section class="view" data-view="account">
+        <div class="eyebrow">命盘工作台 / 会员中心</div>
+        <div class="hero-title"><h1>会员中心</h1><span id="accName">访客</span></div>
+        <p class="hero-desc">本机档案与偏好。</p>
+        <div class="form-card" id="accountBody"></div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- 悬浮助手 -->
+<button class="fab" id="fab" title="命盘问答">✦</button>
+
+<!-- 登录弹窗 -->
+<div class="modal-layer" id="modal">
+  <div class="modal-card">
+    <div class="modal-x" id="modalX">×</div>
+    <div class="modal-seal">砚</div>
+    <h2>启 卷</h2>
+    <p>本工作台纯前端运行，账号仅保存在本机。</p>
+    <div class="fc-row"><label>称呼</label><input id="lgUser" placeholder="如何称呼您"></div>
+    <div class="fc-row"><label>本机口令</label><input id="lgPass" type="password" placeholder="任意字符即可"></div>
+    <div class="form-err" id="lgErr"></div>
+    <button class="btn-white wide" id="lgGo">进入工作台</button>
+    <button class="btn-ghost wide" id="lgGuest">以访客身份进入</button>
+  </div>
+</div>
+
+<script src="js/lunar-data.js?v=53cdbce1"></script>
+<script src="js/chart.js?v=ad0a4d8c"></script>
+<script src="js/interpret.js?v=93a681d6"></script>
+<script src="js/fingerprint.js?v=47b96654"></script>
+<script src="js/celebrities.js?v=6fd0a147"></script>
+<script src="js/similar.js?v=2c6bcf90"></script>
+<script src="js/hepan-core.js?v=96ef41be"></script>
+<script src="js/hepan-report.js?v=c0c98d0a"></script>
+<script src="js/qintian.js?v=44f52394"></script>
+<script src="js/report-core.js?v=712052bf"></script>
+<script src="js/qintian-report.js?v=e8e6f437"></script>
+<script src="js/report-extra.js?v=7dd32797"></script>
+<script src="js/kline.js?v=4ac8bee4"></script>
+<script src="js/embed-assets.js?v=f9f57d0c"></script>
+<script src="js/views.js?v=699ee962"></script>
+<script src="js/i18n-data.js?v=6d0a814d"></script>
+<script src="js/i18n.js?v=d52ccfc3"></script>
+<script src="js/app.js?v=fc2c617b"></script>
+</body>
+</html>
