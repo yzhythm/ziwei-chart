@@ -15,18 +15,19 @@ Everything is computed locally in your browser — **no network calls, no data u
 |---|---|
 | **New Chart** | Solar / lunar calendar input, 1900–2099, with hour branch and gender |
 | **Chart Map** | Full 12-palace grid: major stars, auxiliaries, minor stars, four transformations, self-transformations, twelve officials |
-| **Interpretation** | 12-volume report: chart map, core structure, 12-palace close reading, natal transformations, flying transformations, self-transformation chains, adjacencies & empty palaces, **钦天取用神 (Qintian use-god method)**, six life topics, decade cycles with annual fortunes, key events with monthly timing, methodology & disclaimer |
+| **Interpretation** | Two report tiers — **brief (5 volumes)** and **full (12 volumes)**, sharing the same computed chart data; switch anytime. Full report: chart map, core structure, 12-palace close reading, natal transformations, flying transformations, self-transformation chains, adjacencies & empty palaces, **钦天取用神 (Qintian use-god method)**, six life topics, decade cycles with annual fortunes, key events with monthly timing, methodology & disclaimer |
 | **钦天取用神** | Qintian-school use-god procedure (华山钦天系 · 钟明修 · 蔡明宏): set the Taiji → choose the use-god palace → four transformations as use-god stars → Ji (obstacle) judges fortune → yin-yang combination → Zuo-Fu / You-Bi / Wen-Chang / Wen-Qu reading → decade-borrowed transformations |
 | **Chart Q&A** | 10 computed Q&A pairs for the current chart + free-form keyword questions |
 | **Luck Analysis** | 84-candle life K-line (start value 1.000) with decade bands, hover for per-year trigger details, range switching |
 | **同类型命盘** | 结构指纹检索：同年同构（同年 + 骨架全同）、跨年同构（1900–2099 抽样）、名人命盘对照（18 位） |
-| **Similar Charts** | Structural-fingerprint search: same-year isomorphism, cross-year isomorphism (sampled 1900–2099), celebrity chart comparison (18 figures) |
+| **Similar Charts** | Structural-fingerprint search: same-year isomorphism, cross-year isomorphism (sampled 1900–2099), celebrity chart comparison (18 figures). Pick any figure to generate a structured difference report: similarities / differences / what to learn / cautions — every item shows both sides' actual chart values |
 | **Synastry** | Two-chart comparison across 9 dimensions + a 10-volume synastry report: life-palace resonance, marriage-palace dialogue, cross-chart transformations, self-transformation supply/demand, 12-theme complementarity matrix, luck resonance with monthly timing |
+| **Partner Profile** | Future-partner portrait computed from the Marriage Palace: six dimensions (temperament, personality, career, relationship style, friction points, timing). **Every reading carries its derivation basis** — no generic fortune-cookie text. Empty palaces borrow the opposite palace. One click copies an AI image-generation prompt built from the same computed traits |
 | **Languages** | 简体中文 / 繁體中文 / English (English mode adds a computed Executive Summary) |
 
 ## 🌐 Live Demo
 
-- <https://YOUR-USERNAME.github.io/ziwei-chart/>
+- <https://yzhythm.github.io/ziwei-chart/>
 - Or download `紫微排盘_分享包.zip`, extract it, and double-click `命盘工作台.html` (single file, works fully offline)
 
 ## 📦 What's in the share package
@@ -59,6 +60,11 @@ Everything is computed locally in your browser — **no network calls, no data u
   four-transformation ordering by 禄权科忌, Ji-as-chief judgement, palace-stem borrowing for decade
   cycles (no separate five-tiger escape), plus a rule library for Zuo-Fu / You-Bi / Wen-Chang / Wen-Qu
   with cross-rules that only fire when those stars actually share a palace
+- **Partner-profile engine** `js/partner.js` + `js/partner-report.js`: three-layer derivation
+  (main stars set the tone → auxiliaries/malefics modify → Four Transformations define the themes).
+  Every result object carries a `basis` field shown in the UI, so each reading can be traced back
+  to the chart field it came from. Empty palaces borrow the opposite palace. `imagePrompt()` compiles
+  the same computed traits into a ready-to-paste AI image-generation prompt.
 - **K-line model** `js/interpret.js` + `js/kline.js`: explainable OHLC fortune index, hand-drawn on Canvas
 - **Style isolation**: reports and the K-line are hosted in `iframe srcdoc`, so the paper theme never
   bleeds into the dark workspace shell
